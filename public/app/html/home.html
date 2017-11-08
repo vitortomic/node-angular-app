@@ -1,0 +1,87 @@
+<div md-theme="peachtree" layout="column" layout-gt-sm="row" class="container">
+    <div class="submitForm panel" layout="column">
+        <md-toolbar md-scroll-shrink>
+            <div layout-align="center center" class="md-toolbar-tools">Make a transfer</div>
+        </md-toolbar>
+        <br/>
+        <form name="submitForm" layout="column" layout-margin="20">
+            <md-input-container>
+                <label><b>FROM ACCOUNT</b></label>
+                <input ng-model="transaction.fromAccount" disabled>
+            </md-input-container>
+            <md-input-container>
+                <label><b>TO ACCOUNT</b></label>
+                <input required name="toAccount" ng-model="transaction.toAccount">
+                <div ng-messages="submitForm.toAccount.$error" multiple>
+                    <div ng-message="required">
+                        This field is required
+                    </div>
+                </div>
+            </md-input-container>
+            <md-input-container >
+                <label><b>AMOUNT</b></label>
+                <input required type="number" name="amount" step="any" max="500" ng-model="transaction.amount">
+                <div ng-messages="submitForm.amount.$error" multiple>
+                    <div ng-message="required">
+                        This field is required
+                    </div>
+                    <div ng-message="max">
+                        The maximum amount is $500
+                    </div>
+                </div>
+            </md-input-container>
+            <md-button class="md-raised md-warn" ng-disabled="submitForm.$invalid" ng-click="submit()">Submit</md-button>
+        </form>
+    </div>
+    <div flex="60" class="panel transactionList">
+        <div layout="column">
+            <md-toolbar md-scroll-shrink>
+                <div layout-align="center center" class="md-toolbar-tools">Recent Transactions</div>
+            </md-toolbar>
+            <div layout="row" flex="100" layout-padding>
+                <div flex="40">
+                    <div flex="80" layout="row">
+                        <md-input-container flex="80" class="md-block">
+                            <input placeholder="Search by typing..." ng-model="search">
+                        </md-input-container>
+                        <md-button flex="20" class="md-primary" ng-click="search=''"><b>X</b></md-button>
+                    </div>
+                </div>
+                <div flex="50" layout="row" layout-align="center center">
+                    <span layout-align="start center"> Sort by:</span>
+                    <md-button md-no-ink class="md-primary sortButton" ng-click="sortType = 'transactionDate'; sortReverse = !sortReverse">
+                        DATE
+                        <span ng-show="sortType == 'transactionDate' && !sortReverse">&#9650;</span>
+                        <span ng-show="sortType == 'transactionDate' && sortReverse">&#9660;</span>
+                    </md-button>
+                    <md-button md-no-ink class="md-primary sortButton" ng-click="sortType = 'merchant'; sortReverse = !sortReverse">
+                        BENEFICIARY
+                        <span ng-show="sortType == 'merchant' && !sortReverse">&#9660;</span>
+                        <span ng-show="sortType == 'merchant' && sortReverse">&#9650;</span>
+                    </md-button>
+                    <md-button md-no-ink class="md-primary sortButton" ng-click="sortType = 'amount/1'; sortReverse = !sortReverse;">
+                        AMOUNT
+                        <span ng-show="sortType == 'amount/1' && !sortReverse">&#9650;</span>
+                        <span ng-show="sortType == 'amount/1' && sortReverse">&#9660;</span>
+                    </md-button>
+                </div>   
+            </div>
+            <div layout="row">
+                <md-list layout-padding flex="100">
+                    <md-list-item class="listElement" ng-style="{'border-left' : '6px solid ' + transaction.categoryCode}" 
+                        ng-repeat = "transaction in transactions | orderBy:sortType:sortReverse | filter:search">
+                        <p flex="10">{{transaction.transactionDate | date:'MMM. dd'}}</p>
+                        <div flex="10"> 
+                            <img  style="height:50px;width:50px" data-ng-src="{{transaction.merchantLogo}}"></img>
+                        </div>
+                        <div flex="60" layout="column" layout-margin="5px">
+                            <h4>{{transaction.merchant}}</h4>
+                            <h5>{{transaction.transactionType}}</h5>
+                        </div>
+                        <p flex="5">-${{transaction.amount}}</p>
+                    </md-list-item>
+                </md-list>  
+            </div>
+        </div>
+    </div>
+</div>

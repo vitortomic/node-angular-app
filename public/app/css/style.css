@@ -1,0 +1,44 @@
+html *
+{
+  font-family: 'Kanit', sans-serif;
+}
+.listElement{
+	border: 1px solid grey;
+	border-collapse:collapse;
+}
+.transactionList{
+	min-width: 520px;
+	overflow: auto;
+	margin:50px;
+}
+.sortButton{
+	height:40px;
+	width:120px;
+	border:1px solid black;
+}
+.submitForm{
+	min-width: 350px;
+	margin:50px;
+	height:400px;
+}
+
+.panel{
+	background: white;
+}
+.header{
+	height:80px;
+	background:white;
+	border-bottom: 4px solid orange;
+}
+.logo{
+	padding:20px;
+	width:300px;
+}
+.container{
+  background: url("../assets/background.jpg") no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-attachment: fixed;
+}

@@ -1,0 +1,24 @@
+{
+  "name": "angular-node",
+  "version": "1.0.0",
+  "description": "angular node application",
+  "main": "server.js",
+  "dependencies": {
+    "angular": "^1.6.5",
+    "angular-animate": "^1.6.6",
+    "angular-aria": "^1.6.6",
+    "angular-material": "^1.1.4",
+    "angular-messages": "^1.6.5",
+    "angular-mocks": "^1.6.5",
+    "angular-route": "^1.6.5",
+    "express": "^4.16.2",
+    "jquery": "^3.2.1",
+    "node-fetch": "^1.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vitortomic@gmail.com",
+  "license": "ISC"
+}
