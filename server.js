@@ -7,7 +7,7 @@ app.use(express.static('public'));
 app.use('/scripts', express.static('node_modules'));
 
 app.get('/', (req,res)=>{
-    console.log(req);
+    console.log(req.headers);
     res.send('<a href="/github">Github</a><br/><a href="/json">JSON</a>'
     + '<br/><a href="/app">Home</a>');
 });
